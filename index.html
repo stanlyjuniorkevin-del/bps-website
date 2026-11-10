@@ -1,169 +1,487 @@
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BPS GROUP International</title>
+<title>Future | Technology & Innovation</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Arial,sans-serif;color:#26382d}
-header{background:#103b29;color:white;padding:20px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
-.logo{font-size:26px;font-weight:bold;letter-spacing:2px}
-.logo span{color:#d8b35d}
-.logo small{display:block;font-size:10px;letter-spacing:5px;margin-top:5px}
-nav{display:flex;gap:18px;flex-wrap:wrap}
-nav a{color:white;text-decoration:none;font-size:14px}
-nav a:hover{color:#d8b35d}
-.hero{background:linear-gradient(120deg,#092b1d,#1d563b);color:white;padding:100px 8%;min-height:420px;display:flex;align-items:center}
-.hero-content{max-width:700px}
-.tag{color:#e3bd69;letter-spacing:4px;font-size:12px;font-weight:bold}
-.hero h1{font-size:clamp(38px,6vw,64px);line-height:1.12;margin:22px 0}
-.hero h1 span{color:#e3bd69}
-.hero p{font-size:17px;line-height:1.8;color:#e8eee9}
-.btn{display:inline-block;background:#d8b35d;color:#103b29;padding:15px 24px;margin:12px 8px 0 0;text-decoration:none;font-weight:bold;border-radius:3px}
-section{padding:70px 7%}
-.section-title{text-align:center;margin-bottom:38px}
-.section-title small{color:#a17d32;letter-spacing:4px;font-weight:bold}
-.section-title h2{font-size:34px;color:#17452f;margin-top:12px}
-.section-title p{color:#777;margin-top:12px;line-height:1.7}
-.about{text-align:center}
-.about p{max-width:800px;margin:auto;line-height:1.9;color:#666}
-.products{background:#f5f7f2}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
-.card{background:white;border-radius:7px;overflow:hidden;box-shadow:0 4px 18px #00000012}
-.card img{width:100%;height:190px;object-fit:cover;display:block}
-.card-content{padding:22px}
-.card h3{color:#17452f;margin-bottom:12px}
-.card p{font-size:14px;color:#777;line-height:1.6}
-.price{color:#a17d32;font-weight:bold;font-size:13px;margin-top:17px}
-.global{background:#123d2b;color:white;text-align:center}
-.global h2{margin-bottom:18px;font-size:30px}
-.global p{line-height:1.8;color:#e5e9e5}
-.contact{background:#f5f7f2;text-align:center}
-.contact p{color:#666;line-height:1.8}
-footer{background:#092b1d;color:white;text-align:center;padding:35px 15px}
-footer h2{color:#d8b35d;margin-bottom:10px}
-footer p{font-size:13px;color:#ddd;line-height:1.8}
-@media(max-width:600px){
-header{justify-content:center;text-align:center}
-nav{justify-content:center}
-.hero{padding:75px 7%}
-section{padding:55px 6%}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #090909;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* PURPLE GLOW BACKGROUND */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: #101010;
+}
+
+.glow {
+    position: absolute;
+    width: 550px;
+    height: 550px;
+    border-radius: 50%;
+    filter: blur(130px);
+    opacity: 0.9;
+}
+
+.glow.one {
+    background: #c000ff;
+    top: -250px;
+    left: -150px;
+}
+
+.glow.two {
+    background: #a000ff;
+    right: -200px;
+    top: 180px;
+}
+
+.glow.three {
+    background: #d000ff;
+    bottom: -350px;
+    left: 30%;
+}
+
+/* NAVIGATION */
+
+header {
+    width: 100%;
+    padding: 30px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo-icon {
+    width: 35px;
+    height: 35px;
+    border: 3px solid white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+    padding-bottom: 10px;
+}
+
+nav a:hover,
+nav a.active {
+    border-bottom: 3px solid white;
+}
+
+.signup {
+    padding: 11px 35px;
+    border: 2px solid white;
+    border-radius: 30px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.signup:hover,
+.learn:hover {
+    background: white;
+    color: black;
+}
+
+.menu {
+    display: none;
+    font-size: 30px;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* HERO SECTION */
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    padding: 50px 10%;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero h1 {
+    font-size: 75px;
+    letter-spacing: 5px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.hero h2 {
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+.hero p {
+    color: #d0d0d0;
+    font-size: 15px;
+    line-height: 1.9;
+    max-width: 470px;
+    margin-bottom: 35px;
+}
+
+.learn {
+    padding: 12px 30px;
+    border: 2px solid white;
+    border-radius: 30px;
+    background: transparent;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* OTHER SECTIONS */
+
+section:not(.hero) {
+    min-height: 55vh;
+    padding: 100px 10%;
+    text-align: center;
+}
+
+section:not(.hero) h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+section:not(.hero) p {
+    color: #ccc;
+    line-height: 1.8;
+}
+
+footer {
+    padding: 30px;
+    text-align: center;
+    color: #aaa;
+    border-top: 1px solid #333;
+}
+
+/* SIGNUP MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-box {
+    background: #191019;
+    border: 1px solid #b000ff;
+    padding: 35px;
+    width: 100%;
+    max-width: 380px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.modal-box h2 {
+    margin-bottom: 20px;
+}
+
+.modal-box input {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    background: #292029;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 7px;
+}
+
+.modal-box button {
+    padding: 12px 25px;
+    margin-top: 15px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.close {
+    background: transparent;
+    color: white;
+    border: 1px solid white !important;
+}
+
+/* MOBILE DESIGN */
+
+@media(max-width: 900px) {
+
+    header {
+        padding: 25px 6%;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 85px;
+        left: 5%;
+        width: 90%;
+        padding: 25px;
+        background: #171017;
+        border: 1px solid #a000ff;
+        border-radius: 15px;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    nav.show {
+        display: flex;
+    }
+
+    .hero {
+        padding: 60px 7%;
+        min-height: 80vh;
+    }
+
+    .hero h1 {
+        font-size: 55px;
+    }
+
+    .hero h2 {
+        font-size: 25px;
+    }
+}
+
+@media(max-width: 450px) {
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .hero h2 {
+        font-size: 20px;
+    }
+
+    .logo {
+        font-size: 17px;
+    }
 }
 </style>
 </head>
+
 <body>
 
+<div class="background">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+    <div class="glow three"></div>
+</div>
+
 <header>
-<div class="logo">BPS <span>GROUP</span><small>INTERNATIONAL</small></div>
-<nav>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#products">Products</a>
-<a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;">Contact</a>
-</nav>
+
+    <div class="logo">
+        <div class="logo-icon">✓</div>
+        <span>Your Company</span>
+    </div>
+
+    <button class="menu" onclick="toggleMenu()">☰</button>
+
+    <nav id="navigation">
+        <a href="#home" class="active" onclick="closeMenu()">Home</a>
+        <a href="#contact" onclick="closeMenu()">Contact us</a>
+        <a href="#started" onclick="closeMenu()">Get started</a>
+        <a href="#about" onclick="closeMenu()">About us</a>
+        <button class="signup" onclick="openModal()">SIGN UP</button>
+    </nav>
+
 </header>
 
-<main>
-<div class="hero" id="home">
-<div class="hero-content">
-<div class="tag">QUALITY • TRUST • GLOBAL TRADE</div>
-<h1>Connecting Quality <span>to the World.</span></h1>
-<p>Your trusted partner in agricultural commodities and premium raw materials. Delivering quality through global trade.</p>
-<a class="btn" href="#products">EXPLORE PRODUCTS</a>
-<a class="btn" href="#contact">CONTACT US</a>
-</div>
-</div>
+<!-- HOME -->
 
-<section class="about" id="about">
-<div class="section-title">
-<small>WHO WE ARE</small>
-<h2>About BPS GROUP</h2>
-</div>
-<p>BPS GROUP is an international trading business focused on agricultural commodities. We believe in quality, reliability and building strong business relationships across global markets.</p>
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>FUTURE</h1>
+
+        <h2>TECHNOLOGY & INNOVATION</h2>
+
+        <p>
+            Welcome to the future of technology and innovation.
+            Discover new possibilities, explore creative ideas
+            and experience the power of modern technology.
+            We are building a smarter tomorrow.
+        </p>
+
+        <button class="learn"
+        onclick="document.getElementById('about').scrollIntoView()">
+            Learn More
+        </button>
+
+    </div>
+
 </section>
 
-<section class="products" id="products">
-<div class="section-title">
-<small>WHAT WE OFFER</small>
-<h2>Our Products</h2>
-<p>Quality agricultural commodities for international markets.</p>
-</div>
-<div class="grid">
+<!-- ABOUT -->
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=700" alt="Raw cashew nuts">
-<div class="card-content">
-<h3>Raw Cashew Nuts</h3>
-<p>Quality raw cashew nuts for international trade.</p>
-<div class="price">PRICE ON REQUEST</div>
-</div>
-</div>
+<section id="about">
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=700" alt="Soya beans">
-<div class="card-content">
-<h3>Soya Beans</h3>
-<p>Agricultural soya beans for global markets.</p>
-<div class="price">PRICE ON REQUEST</div>
-</div>
-</div>
+    <h2>About Us</h2>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=700" alt="Coffee beans">
-<div class="card-content">
-<h3>Coffee Beans</h3>
-<p>Selected coffee beans for international buyers.</p>
-<div class="price">PRICE ON REQUEST</div>
-</div>
-</div>
+    <p>
+        We believe in creativity, technology and innovation.
+        Our mission is to create a better and smarter future.
+    </p>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1603905179139-d8d3e7c4b9d8?w=700" alt="Shea nuts">
-<div class="card-content">
-<h3>Shea Nut</h3>
-<p>Natural shea nuts for agricultural processing.</p>
-<div class="price">PRICE ON REQUEST</div>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1567892737950-30c4db37cd89?w=700" alt="Peanuts">
-<div class="card-content">
-<h3>Peanuts</h3>
-<p>Quality peanuts for wholesale and global trade.</p>
-<div class="price">PRICE ON REQUEST</div>
-</div>
-</div>
-
-</div>
 </section>
 
-<section class="global">
-<h2>Global Business. Trusted Quality.</h2>
-<p>Building international agricultural trade connections.<br>India • Vietnam • China</p>
+<!-- GET STARTED -->
+
+<section id="started">
+
+    <h2>Get Started</h2>
+
+    <p>
+        Discover what is possible.
+        Start exploring the future with us today.
+    </p>
+
+    <br>
+
+    <button class="learn" onclick="openModal()">
+        Join Us
+    </button>
+
 </section>
 
-<section class="contact" id="contact">
-<div class="section-title">
-<small>GET IN TOUCH</small>
-<h2>Contact BPS GROUP</h2>
-<p>Interested in our products? Contact us for business enquiries.</p>
-</div>
-<a class="btn" href="mailto:henrystanly@eisenbps.com">EMAIL US</a>
-<a class="btn" href="https://wa.me/2290197975846" target="_blank" rel="noopener">WHATSAPP US</a>
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <h2>Contact Us</h2>
+
+    <p>Have a question? Get in touch with us.</p>
+
+    <br>
+
+    <a href="mailto:contact@example.com"
+       style="color:white;">
+        Send us an email
+    </a>
+
 </section>
-</main>
 
 <footer>
-<h2>BPS GROUP</h2>
-<p>INTERNATIONAL</p>
-<p>QUALITY • TRUST • GLOBAL TRADE</p>
-<p>© 2026 BPS GROUP. All Rights Reserved.</p>
-<p>Website design by Kevin Stanly Junior</p>
+    © 2026 Your Company. All Rights Reserved.
 </footer>
+
+<!-- SIGNUP POPUP -->
+
+<div class="modal" id="signupModal">
+
+    <div class="modal-box">
+
+        <h2>Sign Up</h2>
+
+        <form onsubmit="signup(event)">
+
+            <input type="text" placeholder="Your Name" required>
+
+            <input type="email" placeholder="Your Email" required>
+
+            <button type="submit">Create Account</button>
+
+        </form>
+
+        <br>
+
+        <button class="close" onclick="closeModal()">
+            Close
+        </button>
+
+        <p id="message" style="margin-top:15px;"></p>
+
+    </div>
+
+</div>
+
+<script>
+
+function toggleMenu() {
+    document.getElementById("navigation").classList.toggle("show");
+}
+
+function closeMenu() {
+    document.getElementById("navigation").classList.remove("show");
+}
+
+function openModal() {
+    document.getElementById("signupModal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("signupModal").style.display = "none";
+}
+
+function signup(event) {
+    event.preventDefault();
+
+    document.getElementById("message").innerText =
+        "Thanks for your interest!";
+
+    event.target.reset();
+}
+
+</script>
 
 </body>
 </html>
