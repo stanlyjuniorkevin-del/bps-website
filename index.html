@@ -1,487 +1,466 @@
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Future | Technology & Innovation</title>
+<title>BPS | Staff Management</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    scroll-behavior: smooth;
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:#06130d;color:white;min-height:100vh}
+.glow{position:fixed;width:500px;height:500px;border-radius:50%;
+filter:blur(150px);opacity:.35;pointer-events:none;z-index:-1}
+.g1{background:#00ff77;top:-250px;left:-150px}
+.g2{background:#008f45;right:-200px;bottom:-200px}
+header{display:flex;justify-content:space-between;align-items:center;
+padding:25px 8%;position:relative;z-index:5}
+.logo{font-size:23px;font-weight:bold;letter-spacing:2px}
+.logo span{color:#00e676}
+nav{display:flex;align-items:center;gap:30px}
+nav a{color:#ddd;text-decoration:none;font-size:14px}
+nav a:hover{color:#00e676}
+button{cursor:pointer;border:none;font-weight:bold}
+.outline{padding:12px 25px;border:1px solid #00e676;border-radius:30px;
+background:transparent;color:white}
+.outline:hover,.primary:hover{background:#00e676;color:#001b0c}
+.primary{padding:13px 25px;border-radius:8px;background:#00c968;color:#001b0c}
+.hero{min-height:78vh;display:flex;align-items:center;padding:70px 10%}
+.hero-content{max-width:650px}
+.tag{color:#00e676;letter-spacing:4px;font-size:13px;margin-bottom:20px}
+h1{font-size:65px;letter-spacing:3px;margin-bottom:10px}
+h2{font-size:27px;font-weight:400;margin-bottom:25px}
+p{color:#bdc9c0;line-height:1.8}
+.hero p{max-width:500px;margin-bottom:30px}
+section:not(.hero){padding:80px 10%;min-height:45vh}
+.section-title{text-align:center;margin-bottom:40px;font-size:35px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px}
+.card,.panel{background:rgba(15,35,24,.88);border:1px solid #204b32;
+border-radius:13px;padding:25px}
+.card h3{margin-bottom:12px;color:#00e676}
+.card p{font-size:14px}
+#app{display:none;padding:35px 7%;min-height:80vh}
+.app-header{display:flex;justify-content:space-between;align-items:center;
+gap:15px;flex-wrap:wrap;margin-bottom:30px}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}
+.tab{background:#13291b;color:white;padding:12px 17px;border-radius:7px}
+.tab.active{background:#00c968;color:#001b0c}
+.panel{margin-bottom:20px}
+.panel h3{margin-bottom:18px;color:#00e676}
+input{background:#091b11;border:1px solid #31563d;color:white;
+padding:13px;border-radius:7px;width:100%;margin:8px 0 15px}
+label{font-size:13px;color:#cbd8ce}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
+.stat{background:#10291a;border:1px solid #285438;padding:20px;border-radius:10px}
+.stat strong{display:block;font-size:30px;color:#00e676;margin-top:8px}
+table{width:100%;border-collapse:collapse;min-width:550px}
+th,td{text-align:left;padding:14px;border-bottom:1px solid #294332;font-size:13px}
+th{color:#00e676}
+.table-wrap{overflow-x:auto}
+.small{padding:8px 12px;border-radius:6px;margin:3px;background:#245337;color:white}
+.danger{background:#6b2424}
+.hidden{display:none!important}
+#message{margin-top:15px;color:#00e676;font-size:14px}
+footer{text-align:center;padding:30px;color:#87988c;border-top:1px solid #203d2b}
+.modal{position:fixed;inset:0;background:#000c;display:none;
+justify-content:center;align-items:center;padding:20px;z-index:20}
+.modal-box{background:#10291a;border:1px solid #00e676;padding:30px;
+border-radius:15px;width:100%;max-width:420px}
+.modal-box h2{margin-bottom:20px}
+@media(max-width:750px){
+header{padding:20px 6%}
+nav{gap:12px;flex-wrap:wrap;justify-content:flex-end}
+nav a{font-size:12px}
+.hero{padding:60px 7%}
+h1{font-size:44px}
+h2{font-size:21px}
+section:not(.hero){padding:65px 7%}
 }
-
-body {
-    background: #090909;
-    color: white;
-    overflow-x: hidden;
-}
-
-/* PURPLE GLOW BACKGROUND */
-
-.background {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
-    background: #101010;
-}
-
-.glow {
-    position: absolute;
-    width: 550px;
-    height: 550px;
-    border-radius: 50%;
-    filter: blur(130px);
-    opacity: 0.9;
-}
-
-.glow.one {
-    background: #c000ff;
-    top: -250px;
-    left: -150px;
-}
-
-.glow.two {
-    background: #a000ff;
-    right: -200px;
-    top: 180px;
-}
-
-.glow.three {
-    background: #d000ff;
-    bottom: -350px;
-    left: 30%;
-}
-
-/* NAVIGATION */
-
-header {
-    width: 100%;
-    padding: 30px 10%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 10;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.logo-icon {
-    width: 35px;
-    height: 35px;
-    border: 3px solid white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-    transition: 0.3s;
-    padding-bottom: 10px;
-}
-
-nav a:hover,
-nav a.active {
-    border-bottom: 3px solid white;
-}
-
-.signup {
-    padding: 11px 35px;
-    border: 2px solid white;
-    border-radius: 30px;
-    background: transparent;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.signup:hover,
-.learn:hover {
-    background: white;
-    color: black;
-}
-
-.menu {
-    display: none;
-    font-size: 30px;
-    background: none;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-/* HERO SECTION */
-
-.hero {
-    min-height: 85vh;
-    display: flex;
-    align-items: center;
-    padding: 50px 10%;
-}
-
-.hero-content {
-    max-width: 650px;
-}
-
-.hero h1 {
-    font-size: 75px;
-    letter-spacing: 5px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-.hero h2 {
-    font-size: 34px;
-    font-weight: 400;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-}
-
-.hero p {
-    color: #d0d0d0;
-    font-size: 15px;
-    line-height: 1.9;
-    max-width: 470px;
-    margin-bottom: 35px;
-}
-
-.learn {
-    padding: 12px 30px;
-    border: 2px solid white;
-    border-radius: 30px;
-    background: transparent;
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-/* OTHER SECTIONS */
-
-section:not(.hero) {
-    min-height: 55vh;
-    padding: 100px 10%;
-    text-align: center;
-}
-
-section:not(.hero) h2 {
-    font-size: 40px;
-    margin-bottom: 20px;
-}
-
-section:not(.hero) p {
-    color: #ccc;
-    line-height: 1.8;
-}
-
-footer {
-    padding: 30px;
-    text-align: center;
-    color: #aaa;
-    border-top: 1px solid #333;
-}
-
-/* SIGNUP MODAL */
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 100;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.modal-box {
-    background: #191019;
-    border: 1px solid #b000ff;
-    padding: 35px;
-    width: 100%;
-    max-width: 380px;
-    border-radius: 15px;
-    text-align: center;
-}
-
-.modal-box h2 {
-    margin-bottom: 20px;
-}
-
-.modal-box input {
-    width: 100%;
-    padding: 13px;
-    margin: 10px 0;
-    background: #292029;
-    color: white;
-    border: 1px solid #555;
-    border-radius: 7px;
-}
-
-.modal-box button {
-    padding: 12px 25px;
-    margin-top: 15px;
-    border-radius: 25px;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.close {
-    background: transparent;
-    color: white;
-    border: 1px solid white !important;
-}
-
-/* MOBILE DESIGN */
-
-@media(max-width: 900px) {
-
-    header {
-        padding: 25px 6%;
-    }
-
-    .menu {
-        display: block;
-    }
-
-    nav {
-        display: none;
-        position: absolute;
-        top: 85px;
-        left: 5%;
-        width: 90%;
-        padding: 25px;
-        background: #171017;
-        border: 1px solid #a000ff;
-        border-radius: 15px;
-        flex-direction: column;
-        gap: 25px;
-    }
-
-    nav.show {
-        display: flex;
-    }
-
-    .hero {
-        padding: 60px 7%;
-        min-height: 80vh;
-    }
-
-    .hero h1 {
-        font-size: 55px;
-    }
-
-    .hero h2 {
-        font-size: 25px;
-    }
-}
-
-@media(max-width: 450px) {
-    .hero h1 {
-        font-size: 43px;
-    }
-
-    .hero h2 {
-        font-size: 20px;
-    }
-
-    .logo {
-        font-size: 17px;
-    }
+@media(max-width:450px){
+header{align-items:flex-start;flex-direction:column;gap:18px}
+nav{justify-content:flex-start}
 }
 </style>
 </head>
 
 <body>
 
-<div class="background">
-    <div class="glow one"></div>
-    <div class="glow two"></div>
-    <div class="glow three"></div>
-</div>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
 
 <header>
-
-    <div class="logo">
-        <div class="logo-icon">✓</div>
-        <span>Your Company</span>
-    </div>
-
-    <button class="menu" onclick="toggleMenu()">☰</button>
-
-    <nav id="navigation">
-        <a href="#home" class="active" onclick="closeMenu()">Home</a>
-        <a href="#contact" onclick="closeMenu()">Contact us</a>
-        <a href="#started" onclick="closeMenu()">Get started</a>
-        <a href="#about" onclick="closeMenu()">About us</a>
-        <button class="signup" onclick="openModal()">SIGN UP</button>
-    </nav>
-
+ <div class="logo">BPS <span>GROUP</span></div>
+ <nav>
+  <a href="#home">Home</a>
+  <a href="#services">Features</a>
+  <a href="#about">About</a>
+  <button class="outline" onclick="showLogin()">LOGIN</button>
+ </nav>
 </header>
 
-<!-- HOME -->
-
 <section class="hero" id="home">
-
-    <div class="hero-content">
-
-        <h1>FUTURE</h1>
-
-        <h2>TECHNOLOGY & INNOVATION</h2>
-
-        <p>
-            Welcome to the future of technology and innovation.
-            Discover new possibilities, explore creative ideas
-            and experience the power of modern technology.
-            We are building a smarter tomorrow.
-        </p>
-
-        <button class="learn"
-        onclick="document.getElementById('about').scrollIntoView()">
-            Learn More
-        </button>
-
-    </div>
-
+ <div class="hero-content">
+  <div class="tag">BPS GROUP • MANAGEMENT SYSTEM</div>
+  <h1>STAFF<br>MANAGEMENT</h1>
+  <h2>Manage Smarter. Work Better.</h2>
+  <p>
+   A modern staff management platform designed to organize
+   employees, manage access and simplify business operations.
+   Secure access through administrator-generated lifetime licenses.
+  </p>
+  <button class="primary" onclick="showLogin()">GET STARTED</button>
+ </div>
 </section>
 
-<!-- ABOUT -->
+<section id="services">
+ <h2 class="section-title">Our Features</h2>
+ <div class="cards">
+  <div class="card"><h3>Staff Management</h3>
+   <p>Organize and manage staff records in one place.</p></div>
+  <div class="card"><h3>License Keys</h3>
+   <p>Generate and control lifetime staff access licenses.</p></div>
+  <div class="card"><h3>Admin Dashboard</h3>
+   <p>Manage staff, access and license status.</p></div>
+  <div class="card"><h3>Secure Access</h3>
+   <p>Separate administrator and staff access.</p></div>
+ </div>
+</section>
 
 <section id="about">
-
-    <h2>About Us</h2>
-
-    <p>
-        We believe in creativity, technology and innovation.
-        Our mission is to create a better and smarter future.
-    </p>
-
+ <h2 class="section-title">About BPS</h2>
+ <p style="text-align:center">
+  BPS Staff Management is designed to make staff administration
+  simple, organized and efficient.
+ </p>
 </section>
 
-<!-- GET STARTED -->
+<!-- LOGIN -->
 
-<section id="started">
+<div class="modal" id="loginModal">
+ <div class="modal-box">
+  <h2>Welcome to BPS</h2>
+  <label>Choose account type</label>
+  <select id="role" style="width:100%;padding:13px;background:#091b11;color:white;border:1px solid #31563d;border-radius:7px">
+   <option value="staff">Staff Login</option>
+   <option value="admin">Admin Demo Login</option>
+  </select>
+  <div id="adminFields">
+   <label>Admin password (demo only)</label>
+   <input id="adminPass" type="password" placeholder="Demo password">
+  </div>
+  <div id="staffFields" class="hidden">
+   <label>Staff name</label>
+   <input id="staffName" placeholder="Enter your name">
+   <label>Lifetime license key</label>
+   <input id="staffKey" placeholder="BPS-XXXX-XXXX-XXXX">
+  </div>
+  <button class="primary" style="width:100%" onclick="login()">LOGIN</button>
+  <button class="outline" style="width:100%;margin-top:10px" onclick="closeLogin()">CANCEL</button>
+  <p id="loginMessage"></p>
+ </div>
+</div>
 
-    <h2>Get Started</h2>
+<!-- DASHBOARD -->
 
-    <p>
-        Discover what is possible.
-        Start exploring the future with us today.
-    </p>
+<div id="app">
 
-    <br>
+ <div class="app-header">
+  <div>
+   <div class="tag">BPS MANAGEMENT PORTAL</div>
+   <h2 id="welcome">Dashboard</h2>
+  </div>
+  <button class="outline" onclick="logout()">LOG OUT</button>
+ </div>
 
-    <button class="learn" onclick="openModal()">
-        Join Us
-    </button>
+ <div class="tabs" id="tabs">
+  <button class="tab active" onclick="showTab('dashboard',this)">Dashboard</button>
+  <button class="tab" id="licenseTab" onclick="showTab('licenses',this)">License Keys</button>
+  <button class="tab" id="staffTab" onclick="showTab('staff',this)">Staff</button>
+ </div>
 
-</section>
+ <!-- DASHBOARD TAB -->
 
-<!-- CONTACT -->
+ <div id="dashboard" class="tab-content">
+  <div class="grid">
+   <div class="stat">Total Staff<strong id="staffCount">0</strong></div>
+   <div class="stat">Total Licenses<strong id="keyCount">0</strong></div>
+   <div class="stat">Active Licenses<strong id="activeCount">0</strong></div>
+  </div>
+  <div class="panel" style="margin-top:25px">
+   <h3>Welcome to BPS</h3>
+   <p>Use the dashboard to manage staff and lifetime license access.</p>
+  </div>
+ </div>
 
-<section id="contact">
+ <!-- LICENSE TAB -->
 
-    <h2>Contact Us</h2>
+ <div id="licenses" class="tab-content hidden">
+  <div class="panel" id="generatePanel">
+   <h3>Generate Lifetime License</h3>
+   <label>Staff member name</label>
+   <input id="newStaffName" placeholder="Enter staff name">
+   <button class="primary" onclick="generateKey()">GENERATE LICENSE KEY</button>
+   <p id="generated"></p>
+  </div>
 
-    <p>Have a question? Get in touch with us.</p>
+  <div class="panel">
+   <h3>License Management</h3>
+   <div class="table-wrap">
+    <table>
+     <thead>
+      <tr><th>License Key</th><th>Staff</th><th>Status</th><th>Actions</th></tr>
+     </thead>
+     <tbody id="licenseRows"></tbody>
+    </table>
+   </div>
+  </div>
+ </div>
 
-    <br>
+ <!-- STAFF TAB -->
 
-    <a href="mailto:contact@example.com"
-       style="color:white;">
-        Send us an email
-    </a>
-
-</section>
-
-<footer>
-    © 2026 Your Company. All Rights Reserved.
-</footer>
-
-<!-- SIGNUP POPUP -->
-
-<div class="modal" id="signupModal">
-
-    <div class="modal-box">
-
-        <h2>Sign Up</h2>
-
-        <form onsubmit="signup(event)">
-
-            <input type="text" placeholder="Your Name" required>
-
-            <input type="email" placeholder="Your Email" required>
-
-            <button type="submit">Create Account</button>
-
-        </form>
-
-        <br>
-
-        <button class="close" onclick="closeModal()">
-            Close
-        </button>
-
-        <p id="message" style="margin-top:15px;"></p>
-
-    </div>
+ <div id="staff" class="tab-content hidden">
+  <div class="panel" id="addStaffPanel">
+   <h3>Add Staff Member</h3>
+   <input id="addName" placeholder="Staff name">
+   <input id="addPosition" placeholder="Job position">
+   <button class="primary" onclick="addStaff()">ADD STAFF</button>
+  </div>
+  <div class="panel">
+   <h3>Staff Directory</h3>
+   <div class="table-wrap">
+    <table>
+     <thead><tr><th>Name</th><th>Position</th><th>Status</th></tr></thead>
+     <tbody id="staffRows"></tbody>
+    </table>
+   </div>
+  </div>
+ </div>
 
 </div>
 
+<footer>© 2026 BPS GROUP | Staff Management System</footer>
+
 <script>
+const getData = key => {
+ try { return JSON.parse(localStorage.getItem(key)) || []; }
+ catch { return []; }
+};
 
-function toggleMenu() {
-    document.getElementById("navigation").classList.toggle("show");
+const saveData = (key,data) =>
+ localStorage.setItem(key,JSON.stringify(data));
+
+let licenses = getData("bps_licenses");
+let staff = getData("bps_staff");
+let currentRole = "";
+
+function showLogin(){
+ document.getElementById("loginModal").style.display="flex";
 }
 
-function closeMenu() {
-    document.getElementById("navigation").classList.remove("show");
+function closeLogin(){
+ document.getElementById("loginModal").style.display="none";
 }
 
-function openModal() {
-    document.getElementById("signupModal").style.display = "flex";
+document.getElementById("role").addEventListener("change",function(){
+ document.getElementById("adminFields").classList.toggle("hidden",this.value!=="admin");
+ document.getElementById("staffFields").classList.toggle("hidden",this.value!=="staff");
+ document.getElementById("loginMessage").innerText="";
+});
+
+function login(){
+ const role=document.getElementById("role").value;
+
+ if(role==="admin"){
+  // DEMO ONLY: Replace with server-side authentication.
+  if(document.getElementById("adminPass").value!=="BPSADMIN"){
+   document.getElementById("loginMessage").innerText="Incorrect demo password.";
+   return;
+  }
+  currentRole="admin";
+  openDashboard("Administrator");
+ }else{
+  const name=document.getElementById("staffName").value.trim();
+  const key=document.getElementById("staffKey").value.trim().toUpperCase();
+
+  const license=licenses.find(x=>x.key===key && x.status==="Active");
+
+  if(!license || !name){
+   document.getElementById("loginMessage").innerText="Invalid or inactive license.";
+   return;
+  }
+
+  if(license.staff.toLowerCase()!==name.toLowerCase()){
+   document.getElementById("loginMessage").innerText="License does not match this staff member.";
+   return;
+  }
+
+  currentRole="staff";
+  openDashboard(name);
+ }
+ closeLogin();
 }
 
-function closeModal() {
-    document.getElementById("signupModal").style.display = "none";
+function openDashboard(name){
+ document.querySelectorAll("body > header, body > section, body > footer")
+ .forEach(x=>x.style.display="none");
+
+ document.getElementById("app").style.display="block";
+ document.getElementById("welcome").innerText="Welcome, "+name;
+ document.getElementById("licenseTab").style.display=currentRole==="admin"?"block":"none";
+ document.getElementById("staffTab").style.display="block";
+ document.getElementById("generatePanel").style.display=currentRole==="admin"?"block":"none";
+ document.getElementById("addStaffPanel").style.display=currentRole==="admin"?"block":"none";
+
+ updateDashboard();
+
+ if(currentRole==="staff"){
+  showTab("staff",document.getElementById("staffTab"));
+ }else{
+  showTab("dashboard",document.querySelector("#tabs button"));
+ }
 }
 
-function signup(event) {
-    event.preventDefault();
-
-    document.getElementById("message").innerText =
-        "Thanks for your interest!";
-
-    event.target.reset();
+function logout(){
+ currentRole="";
+ document.getElementById("app").style.display="none";
+ document.querySelectorAll("body > header, body > section, body > footer")
+ .forEach(x=>x.style.display="");
+ document.getElementById("adminPass").value="";
+ document.getElementById("staffKey").value="";
 }
 
+function showTab(id,button){
+ document.querySelectorAll(".tab-content").forEach(x=>x.classList.add("hidden"));
+ document.getElementById(id).classList.remove("hidden");
+ document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+ if(button)button.classList.add("active");
+ updateDashboard();
+}
+
+function generateKey(){
+ const name=document.getElementById("newStaffName").value.trim();
+ if(!name)return alert("Enter a staff name.");
+
+ const random=()=>Math.random().toString(36).substring(2,6).toUpperCase();
+ const key="BPS-"+random()+"-"+random()+"-"+random();
+
+ licenses.push({
+  key,staff:name,status:"Active",created:new Date().toISOString()
+ });
+
+ saveData("bps_licenses",licenses);
+ document.getElementById("generated").innerText="Generated: "+key+" (Lifetime)";
+ document.getElementById("newStaffName").value="";
+ renderLicenses();
+ updateDashboard();
+}
+
+function changeLicense(key,action){
+ if(currentRole!=="admin")return;
+
+ const item=licenses.find(x=>x.key===key);
+ if(!item)return;
+
+ if(action==="revoke"){
+  if(!confirm("Permanently revoke this license?"))return;
+  item.status="Revoked";
+ }else if(action==="deactivate"){
+  item.status="Inactive";
+ }else if(action==="activate"){
+  item.status="Active";
+ }
+
+ saveData("bps_licenses",licenses);
+ renderLicenses();
+ updateDashboard();
+}
+
+function renderLicenses(){
+ const rows=document.getElementById("licenseRows");
+ rows.innerHTML="";
+
+ licenses.forEach(item=>{
+  const tr=document.createElement("tr");
+
+  const values=[item.key,item.staff,item.status];
+  values.forEach(value=>{
+   const td=document.createElement("td");
+   td.textContent=value;
+   tr.appendChild(td);
+  });
+
+  const actions=document.createElement("td");
+
+  if(currentRole==="admin"){
+   if(item.status==="Active"){
+    addAction(actions,"Deactivate",()=>changeLicense(item.key,"deactivate"));
+   }else if(item.status==="Inactive"){
+    addAction(actions,"Activate",()=>changeLicense(item.key,"activate"));
+   }
+
+   if(item.status!=="Revoked"){
+    addAction(actions,"Revoke",()=>changeLicense(item.key,"revoke"),true);
+   }
+  }
+
+  tr.appendChild(actions);
+  rows.appendChild(tr);
+ });
+}
+
+function addAction(parent,label,callback,danger=false){
+ const button=document.createElement("button");
+ button.className="small"+(danger?" danger":"");
+ button.textContent=label;
+ button.onclick=callback;
+ parent.appendChild(button);
+}
+
+function addStaff(){
+ if(currentRole!=="admin")return;
+
+ const name=document.getElementById("addName").value.trim();
+ const position=document.getElementById("addPosition").value.trim();
+
+ if(!name||!position)return alert("Fill in both fields.");
+
+ staff.push({name,position,status:"Active"});
+ saveData("bps_staff",staff);
+
+ document.getElementById("addName").value="";
+ document.getElementById("addPosition").value="";
+
+ renderStaff();
+ updateDashboard();
+}
+
+function renderStaff(){
+ const rows=document.getElementById("staffRows");
+ rows.innerHTML="";
+
+ staff.forEach(person=>{
+  const tr=document.createElement("tr");
+  [person.name,person.position,person.status].forEach(value=>{
+   const td=document.createElement("td");
+   td.textContent=value;
+   tr.appendChild(td);
+  });
+  rows.appendChild(tr);
+ });
+}
+
+function updateDashboard(){
+ document.getElementById("staffCount").innerText=staff.length;
+ document.getElementById("keyCount").innerText=licenses.length;
+ document.getElementById("activeCount").innerText=
+ licenses.filter(x=>x.status==="Active").length;
+
+ renderLicenses();
+ renderStaff();
+}
+
+updateDashboard();
 </script>
-
 </body>
 </html>
